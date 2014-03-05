@@ -1,0 +1,4 @@
+var da = 
+	{
+		widget: {}
+	};
