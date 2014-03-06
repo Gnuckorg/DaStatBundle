@@ -4,7 +4,7 @@ namespace Da\StatBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Da\StatBundle\DependencyInjection\Compiler\StatHandlerCompilerPass;
+use Da\StatBundle\DependencyInjection\Compiler\AddStatMediatorDependenciesPass;
 
 class DaStatBundle extends Bundle
 {
@@ -12,6 +12,6 @@ class DaStatBundle extends Bundle
     {
         parent::build($container);
 
-        $container->addCompilerPass(new StatHandlerCompilerPass());
+        $container->addCompilerPass(new AddStatMediatorDependenciesPass());
     }
 }

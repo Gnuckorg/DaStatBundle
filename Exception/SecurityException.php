@@ -3,9 +3,9 @@
 namespace Da\StatBundle\Exception;
 
 /**
- * Une exception liée à la sécurité.
+ * Exception thrown when the access to a data is forbidden.
  *
- * @author Thomas Prelot
+ * @author Thomas Prelot <thomas.prelot@gmail.com>
  */
 class SecurityException extends \Exception
 {

@@ -11,30 +11,26 @@ use Da\StatBundle\Exception\SecurityException;
 use Da\StatBundle\Exception\NoDataException;
 
 /**
+ * @author Thomas Prelot <thomas.prelot@gmail.com>
+ *
  * @Route("/stat/{_locale}")
  */
 class MainController extends Controller
 {
     /**
-     * Charge la description du rendu graphique d'une statistique 
-     * en ajax.
+     * Load the description of a rendering of a statistic (ajax).
      *
      * @Route("/buildChart/{statId}", defaults={"_format"="json"})
      * @Template()
      */
     public function buildChartAction($statId)
     {
-        try
-        {
+        try {
             $criteria = $this->get('request')->query->get('criteria', array());
             $chart = $this->get('da.stat.handler')->buildChart($statId, $criteria);
-        }
-        catch (SecurityException $e)
-        {
+        } catch (SecurityException $e) {
             throw new AccessDeniedException($e->getMessage());
-        }
-        catch (NoDataException $e)
-        {
+        } catch (NoDataException $e) {
             throw new NotFoundHttpException('No data has been found for the chart');
         }
 

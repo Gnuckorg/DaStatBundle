@@ -1,64 +1,57 @@
 parameters:
-    da.stat.handler.class: Da\StatBundle\Handler\StatHandler
+    da_stat.mediator.class: Da\StatBundle\Handler\StatHandler
 
 services:
     # Handlers
-    da.stat.handler:
-        class: %da.stat.handler.class%
-        arguments: [@router, @translator, %da.stat.config.stat%, %da.stat.config.assemblies%, %da.stat.config.menu%]
+    da_stat.mediator:
+        class: %da_stat.mediator.class%
+        arguments: [@router, @translator, %da_stat.stat%, %da_stat.assemblies%, %da_stat.menu%]
 
     # Renderers
-    da.stat.renderer.chart:
+    da_stat.renderer.chart:
         class: Da\StatBundle\Renderer\ChartRenderer
         arguments: [@translator]
         tags:
-            - { name: da.stat.renderer }
+            - { name: da_stat.renderer }
 
-    da.stat.renderer.piechart:
+    da_stat.renderer.piechart:
         class: Da\StatBundle\Renderer\PieChartRenderer
         arguments: [@translator]
         tags:
-            - { name: da.stat.renderer }
+            - { name: da_stat.renderer }
 
-    da.stat.renderer.polarchart:
+    da_stat.renderer.polarchart:
         class: Da\StatBundle\Renderer\PolarChartRenderer
         arguments: [@translator]
         tags:
-            - { name: da.stat.renderer }
+            - { name: da_stat.renderer }
 
-    da.stat.renderer.map:
+    da_stat.renderer.map:
         class: Da\StatBundle\Renderer\MapRenderer
         arguments: [@translator]
         tags:
-            - { name: da.stat.renderer }
+            - { name: da_stat.renderer }
 
-    da.stat.renderer.table:
+    da_stat.renderer.table:
         class: Da\StatBundle\Renderer\TableRenderer
         arguments: [@translator]
         tags:
-            - { name: da.stat.renderer }
+            - { name: da_stat.renderer }
 
-    da.stat.renderer.stackedbarchart:
+    da_stat.renderer.stackedbarchart:
         class: Da\StatBundle\Renderer\StackedBarChartRenderer
         arguments: [@translator]
         tags:
-            - { name: da.stat.renderer }
+            - { name: da_stat.renderer }
 
-    da.stat.renderer.stackedcolumnchart:
+    da_stat.renderer.stackedcolumnchart:
         class: Da\StatBundle\Renderer\StackedColumnChartRenderer
         arguments: [@translator]
         tags:
-            - { name: da.stat.renderer }
+            - { name: da_stat.renderer }
 
-    da.stat.renderer.barchart:
+    da_stat.renderer.barchart:
         class: Da\StatBundle\Renderer\BarRenderer
         arguments: [@translator]
         tags:
-            - { name: da.stat.renderer }
-
-    # Filters
-    da.stat.filter.date:
-        class: Da\StatBundle\Filter\DateFilter
-        arguments: []
-        tags:
-            - { name: da.stat.filter }
+            - { name: da_stat.renderer }

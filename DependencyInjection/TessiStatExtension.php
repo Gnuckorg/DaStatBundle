@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\Loader;
 /**
  * This is the class that loads and manages your bundle configuration
  *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
+ * @author Thomas Prelot <thomas.prelot@gmail.com>
  */
 class DaStatExtension extends Extension
 {
@@ -25,19 +25,8 @@ class DaStatExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
-        $statConfig = array();
-        if (isset($config['stat']))
-            $statConfig = $config['stat'];
-        $container->setParameter('da.stat.config.stat', $statConfig);
-
-        $assembliesConfig = array();
-        if (isset($config['assemblies']))
-            $assembliesConfig = $config['assemblies'];
-        $container->setParameter('da.stat.config.assemblies', $assembliesConfig);
-
-        $menuConfig = array('items' => array());
-        if (isset($config['menu']))
-            $menuConfig = $config['menu'];
-        $container->setParameter('da.stat.config.menu', $menuConfig);
+        $container->setParameter('da_stat.stat', $config['stat']);
+        $container->setParameter('da_stat.assemblies', $config['assemblies']);
+        $container->setParameter('da_stat.menu', $config['menu']);
     }
 }

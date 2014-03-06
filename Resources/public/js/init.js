@@ -2,7 +2,7 @@ stat = {};
 
 $(document).ready
 (
-	function() 
+	function()
 	{
 		$('.chartInput').change
 		(
@@ -41,7 +41,7 @@ $(document).ready
 			}
 		);
 
-		stat.loadCharts();	
+		stat.loadCharts();
 
 		$.each
 		(

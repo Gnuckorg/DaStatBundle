@@ -3,17 +3,17 @@
 namespace Da\StatBundle\Filter;
 
 /**
- * FilterInterface est l'interface qu'un filtre doit 
- * implémenter pour être utilisée par le service da.stat.handler.
+ * FilterInterface is the interface that a class should implement
+ * to be used as a filter.
  *
- * @author Thomas Prelot
+ * @author Thomas Prelot <thomas.prelot@gmail.com>
  */
 interface FilterInterface
 {
 	/**
-     * Récupère les critères de filtrage.
+     * Get the criteria of the filter.
      *
-     * @return array Une liste de critères implémentant CriteriumInterface.
+     * @return array An array of criteria implementing \Da\StatBundle\CriterionCriterionInterface.
      */
 	function getCriteria();
 }

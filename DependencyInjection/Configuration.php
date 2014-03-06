@@ -7,9 +7,9 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 /**
- * This is the class that validates and merges configuration from your app/config files
+ * This is the class that validates and merges configuration from your app/config files.
  *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html#cookbook-bundles-extension-config-class}
+ * @author Thomas Prelot <thomas.prelot@gmail.com>
  */
 class Configuration implements ConfigurationInterface
 {
@@ -24,10 +24,6 @@ class Configuration implements ConfigurationInterface
         $this->addStatSection($rootNode);
         $this->addAssembliesSection($rootNode);
         $this->addMenuSection($rootNode);
-
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
 
         return $treeBuilder;
     }
@@ -48,31 +44,33 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->arrayNode('stat')
                     ->useAttributeAsKey('dumb')
-                    ->prototype('array')
-                        ->children()
-                            ->scalarNode('aggregator')
-                                ->isRequired(true)
-                            ->end()
-                            ->scalarNode('renderer')
-                                ->isRequired(true)
-                            ->end()
-                            ->scalarNode('filter')->end()
-                            ->arrayNode('roles')
-                                ->isRequired(true)
-                                ->useAttributeAsKey('dumb')
-                                ->prototype('array')
-                                    ->prototype('scalar')->end()
+                    ->defaultValue(array())
+                        ->prototype('array')
+                            ->children()
+                                ->scalarNode('aggregator')
+                                    ->isRequired(true)
                                 ->end()
-                            ->end()
-                            ->arrayNode('labels')
-                                ->isRequired(true)
-                                ->children()
-                                    ->scalarNode('title')
-                                        ->isRequired(true)
+                                ->scalarNode('renderer')
+                                    ->isRequired(true)
+                                ->end()
+                                ->scalarNode('filter')->end()
+                                ->arrayNode('roles')
+                                    ->isRequired(true)
+                                    ->useAttributeAsKey('dumb')
+                                    ->prototype('array')
+                                        ->prototype('scalar')->end()
                                     ->end()
-                                    ->scalarNode('xAxis')->end()
-                                    ->scalarNode('yAxis')->end()
-                                    ->scalarNode('legend')->end()
+                                ->end()
+                                ->arrayNode('labels')
+                                    ->isRequired(true)
+                                    ->children()
+                                        ->scalarNode('title')
+                                            ->isRequired(true)
+                                        ->end()
+                                        ->scalarNode('xAxis')->end()
+                                        ->scalarNode('yAxis')->end()
+                                        ->scalarNode('legend')->end()
+                                    ->end()
                                 ->end()
                             ->end()
                         ->end()
@@ -92,6 +90,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->arrayNode('assemblies')
                 ->useAttributeAsKey('dumb')
+                ->defaultValue(array())
                     ->prototype('array')
                         ->prototype('scalar')->end()
                     ->end()
@@ -112,6 +111,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->arrayNode('menu')
+                    ->defaultValue(array())
                     ->children()
                         ->arrayNode('items')
                             ->useAttributeAsKey('dumb')

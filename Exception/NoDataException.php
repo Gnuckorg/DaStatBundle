@@ -3,14 +3,14 @@
 namespace Da\StatBundle\Exception;
 
 /**
- * Une exception si un agrégateur n'a pas réussi à récupérer de données.
+ * Exception thrown when an aggregator find no data.
  *
- * @author Thomas Prelot
+ * @author Thomas Prelot <thomas.prelot@gmail.com>
  */
 class NoDataException extends \Exception
 {
-	public function __construct()
-	{
-		parent::__construct('L\'agrégateur n\'a pas réussi à récupérer de données.');
-	}
+    public function __construct()
+    {
+        parent::__construct('No data found.');
+    }
 }

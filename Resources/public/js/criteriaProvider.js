@@ -3,7 +3,7 @@ $.extend
 	stat,
 	{
 		criteriaProviders: {},
-		
+
 		CriteriaProvider: function()
 			{
 				this.criteria = [];
@@ -25,7 +25,7 @@ $.extend
 		return this.criteria;
 	}
 
-	_class.prototype.addCriterium = function(name, value)
+	_class.prototype.addCriterion = function(name, value)
 	{
 		this.criteria.push({name: name, value: value});
 	}

@@ -1,4 +1,9 @@
 DaStatBundle
-===============
+============
 
-Le module de statistiques est un module technique qui permet de gérer des statistiques et d'en générer différents types de graphiques.
+Symfony2's bundle providing an architecture to make statistics. LOAD your data and RENDER it.
+
+Documentation
+-------------
+
+Let's take a look at the full [documentation](https://github.com/Gnuckorg/DaStatBundle/blob/master/Resources/doc/index.md)!
