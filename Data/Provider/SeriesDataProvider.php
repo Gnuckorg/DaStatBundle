@@ -12,7 +12,7 @@ class SeriesDataProvider extends AbstractDataProvider
     /**
      * {@inheritdoc}
      */
-    abstract protected function getDataClassName()
+    protected function getDataClassName()
     {
         return '\Da\StatBundle\Data\SeriesData';
     }

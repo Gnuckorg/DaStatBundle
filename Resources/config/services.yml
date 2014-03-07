@@ -1,5 +1,7 @@
 parameters:
-    da_stat.mediator.class: Da\StatBundle\Handler\StatHandler
+    da_stat.mediator.class: Da\StatBundle\Mediator\StatMediator
+    da_stat.displayer.class: Da\StatBundle\Twig\StatDisplayer
+    da_stat.twig_extension.class: Da\StatBundle\Twig\StatExtension
 
 services:
     da_stat.mediator:
@@ -8,4 +10,14 @@ services:
 
     da_stat.aggregator:
         abstract: true
-        arguments: [@translator, @security_context]
+        arguments: [@translator, @security.context, @da_stat.data_provider.associative]
+
+    da_stat.displayer:
+        class: %da_stat.displayer.class%
+        arguments: [@templating, @da_stat.mediator]
+
+    da_stat.twig_extension:
+        class: %da_stat.twig_extension.class%
+        arguments: [@service_container]
+        tags:
+            - { name: twig.extension }

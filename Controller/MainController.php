@@ -27,7 +27,7 @@ class MainController extends Controller
     {
         try {
             $criteria = $this->get('request')->query->get('criteria', array());
-            $chart = $this->get('da_stat.moderator')->buildChart($statId, $criteria);
+            $chart = $this->get('da_stat.mediator')->buildChart($statId, $criteria);
         } catch (SecurityException $e) {
             throw new AccessDeniedException($e->getMessage());
         } catch (NoDataException $e) {

@@ -27,7 +27,7 @@ class AddStatMediatorDependenciesPass implements CompilerPassInterface
             foreach ($tagAttributes as $attributes) {
                 $definition->addMethodCall(
                     'addAggregator',
-                    array(new Reference($id), $id)
+                    array(new Reference($id), $attributes['id'])
                 );
             }
         }
@@ -39,7 +39,7 @@ class AddStatMediatorDependenciesPass implements CompilerPassInterface
             foreach ($tagAttributes as $attributes) {
                 $definition->addMethodCall(
                     'addRenderer',
-                    array(new Reference($id), $id)
+                    array(new Reference($id), $attributes['id'])
                 );
             }
         }
@@ -51,7 +51,7 @@ class AddStatMediatorDependenciesPass implements CompilerPassInterface
             foreach ($tagAttributes as $attributes) {
                 $definition->addMethodCall(
                     'addFilter',
-                    array(new Reference($id), $id)
+                    array(new Reference($id), $attributes['id'])
                 );
             }
         }

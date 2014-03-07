@@ -1,6 +1,6 @@
 <?php
 
-namespace Da\StatBundle\Handler;
+namespace Da\StatBundle\Mediator;
 
 use Da\StatBundle\Aggregator\AggregatorInterface;
 use Da\StatBundle\Renderer\RendererInterface;
@@ -67,13 +67,22 @@ interface StatMediatorInterface
     function getChartFilterCriteria($statId);
 
     /**
-     * Retrieve the list of the ids of the statistics of the assembly.
+     * Retrieve the list of the ids of the statistics of an assembly.
      *
      * @param string $statId The id of the statistic.
      *
      * @return array The list of the ids of the statistics of the assembly.
      */
     function getAssembly($statId);
+
+    /**
+     * Retrieve the config of a statistic.
+     *
+     * @param string $statId The id of the statistic.
+     *
+     * @return array The config of a statistic.
+     */
+    function getStat($statId);
 
     /**
      * Build the rendering description of a statistic.

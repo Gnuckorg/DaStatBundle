@@ -1,6 +1,6 @@
 <?php
 
-namespace Da\StatBundle\Handler;
+namespace Da\StatBundle\Mediator;
 
 use Da\StatBundle\Aggregator\AggregatorInterface;
 use Da\StatBundle\Renderer\RendererInterface;
@@ -167,10 +167,10 @@ class StatMediator implements StatMediatorInterface
         return $this->filters[$id];
     }
 
-     /**
+    /**
      * {@inheritdoc}
      */
-    protected function getAssembly($id)
+    public function getAssembly($id)
     {
         if (!isset($this->assembliesConfig[$id])) {
             throw new \LogicException(sprintf(
@@ -180,6 +180,21 @@ class StatMediator implements StatMediatorInterface
         }
 
         return $this->assembliesConfig[$id];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getStat($id)
+    {
+        if (!isset($this->statConfig[$id])) {
+            throw new \LogicException(sprintf(
+                'The stat "%s" is not defined in the configuration.',
+                $id
+            ));
+        }
+
+        return $this->statConfig[$id];
     }
 
     /**
@@ -266,48 +281,33 @@ class StatMediator implements StatMediatorInterface
      */
     public function buildChart($statId, $criteria)
     {
-        if (isset($this->statConfig[$statId]))
-        {
-            $statConfig = $this->statConfig[$statId];
+        $statConfig = $this->getStat($statId);
 
-            $aggregatorId = $statConfig['aggregator'];
-            $aggregator = $this->getAggregator($aggregatorId);
+        $aggregatorId = $statConfig['aggregator'];
+        $aggregator = $this->getAggregator($aggregatorId);
 
-            $rendererId = $statConfig['renderer'];
-            $renderer = $this->getRenderer($rendererId);
+        $rendererId = $statConfig['renderer'];
+        $renderer = $this->getRenderer($rendererId);
 
-            $criteria = $aggregator->formatCriteria($criteria);
-            $criteria = $aggregator->checkCriteria($criteria);
-            $data = $aggregator->aggregate($criteria);
+        $criteria = $aggregator->formatCriteria($criteria);
+        $criteria = $aggregator->checkCriteria($criteria);
+        $data = $aggregator->aggregate($criteria);
 
-            if (!$renderer->supports($data)) {
-                throw new \LogicException(sprintf(
-                    'The renderer "%s" does not support data of class "%s" returned by the aggregator for the statistic "%s".',
-                    $rendererId,
-                    get_class($data),
-                    $statId
-                ));
-            }
-
-            $renderingDescription = $renderer->render($data);
-            $type = $renderer->getType();
-            $renderingDescription = $this->buildChartSpecificType($statId, $type, $renderingDescription);
-            $renderingDescription = array('type' => $type, 'data' => $renderingDescription);
-
-            return json_encode($renderingDescription);
-        }
-
-        if (isset($this->assembliesConfig[$statId])) {
+        if (!$renderer->supports($data)) {
             throw new \LogicException(sprintf(
-                'The assembly "%s" cannot be rendered. Only simple statistics can be build.',
+                'The renderer "%s" does not support data of class "%s" returned by the aggregator for the statistic "%s".',
+                $rendererId,
+                get_class($data),
                 $statId
             ));
         }
 
-        throw new \LogicException(sprintf(
-            'The statistic "%s" is not defined in the configuration.',
-            $statId
-        ));
+        $renderingDescription = $renderer->render($data);
+        $type = $renderer->getType();
+        $renderingDescription = $this->buildChartSpecificType($statId, $type, $renderingDescription);
+        $renderingDescription = array('type' => $type, 'data' => $renderingDescription);
+
+        return json_encode($renderingDescription);
     }
 
     /**
@@ -321,7 +321,7 @@ class StatMediator implements StatMediatorInterface
      */
     private function buildChartSpecificType($statId, $type, $renderingDescription)
     {
-        $statConfig = $this->statConfig[$statId];
+        $statConfig = $this->getStat($statId);
 
         switch ($type) {
             case 'highcharts':

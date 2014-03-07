@@ -19,7 +19,7 @@ class TableData extends AbstractData
      */
     protected function hasAssociativeValues()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -41,11 +41,13 @@ class TableData extends AbstractData
                 ));
             }
             
-            if (is_numeric($value) || is_string($value) || $value instanceof \DateTime) {
-                throw new \InvalidArgumentException(sprintf(
-                    'A series should be an array of numeric, string or DateTime values; a "%s" was found.',
-                    gettype($value)
-                ));
+            foreach ($series as $seriesValue) {
+                if (!is_numeric($seriesValue) && !is_string($seriesValue) && !($seriesValue instanceof \DateTime)) {
+                    throw new \InvalidArgumentException(sprintf(
+                        'A series should be an array of numeric, string or DateTime values; a "%s" was found.',
+                        gettype($seriesValue)
+                    ));
+                }
             }
         }
     }

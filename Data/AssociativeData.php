@@ -27,7 +27,7 @@ class AssociativeData extends AbstractData
      */
     protected function checkValue($value)
     {
-        if (is_numeric($value) || is_string($value) || $value instanceof \DateTime) {
+        if (!is_numeric($value) && !is_string($value) && !($value instanceof \DateTime)) {
             throw new \InvalidArgumentException(sprintf(
                 'The value should be a numeric, a string or a DateTime; "%s" given instead.',
                 gettype($value)

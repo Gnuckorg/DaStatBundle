@@ -12,7 +12,7 @@ class AssociativeDataProvider extends AbstractDataProvider
     /**
      * {@inheritdoc}
      */
-    abstract protected function getDataClassName()
+    protected function getDataClassName()
     {
         return '\Da\StatBundle\Data\AssociativeData';
     }

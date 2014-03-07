@@ -2,8 +2,6 @@ services:
     da_stat.renderer:
         arguments: [@translator]
         abstract: true
-        tags:
-            - { name: da_stat.renderer }
 
     da_stat.renderer.chart:
         parent: da_stat.renderer

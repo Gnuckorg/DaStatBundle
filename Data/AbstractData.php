@@ -44,7 +44,7 @@ abstract class AbstractData implements DataInterface
      */
     public function setOption($key, $value)
     {
-        $this->options[$key] = $value
+        $this->options[$key] = $value;
     }
 
     /**
@@ -64,7 +64,7 @@ abstract class AbstractData implements DataInterface
 
         if (null === $key && $hasAssociativeValues) {
             throw new \InvalidArgumentException('The values of the data should be an associative array of values.');
-        } else (null !== $key && !$hasAssociativeValues) {
+        } else if (null !== $key && !$hasAssociativeValues) {
             throw new \InvalidArgumentException('The values of the data should be a list of values.');
         }
 
@@ -124,7 +124,7 @@ abstract class AbstractData implements DataInterface
      *
      * @return boolean True if the array is associative, false otherwise.
      */
-    protected isAssociativeArray(array $array) 
+    protected function isAssociativeArray(array $array) 
     {
         return (bool)count(array_filter(array_keys($array), 'is_string'));
     }

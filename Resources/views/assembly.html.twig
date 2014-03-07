@@ -1,0 +1,5 @@
+<div class="stat-assembly">
+    {% for statId in assembly %}
+        {% include 'DaStatBundle::stat.html.twig' with {'statId': statId} %}
+    {% endfor %}
+</div>

@@ -2,6 +2,8 @@
 
 namespace Da\StatBundle\Data\Provider;
 
+use Da\StatBundle\Data\DataInterface;
+
 /**
  * AbstractDataProvider is an helper class to define a provider 
  * for a type of data class.
@@ -15,7 +17,8 @@ abstract class AbstractDataProvider implements DataProviderInterface
      */
     public function create()
     {
-        $data = new $this->getDataClassName();
+        $className = $this->getDataClassName();
+        $data = new $className();
 
         return $this->check($data);
     }
