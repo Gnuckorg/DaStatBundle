@@ -1,0 +1,12 @@
+services:
+    da_stat.data_provider.list:
+        class: Da\StatBundle\Data\Provider\ListDataProvider
+
+    da_stat.data_provider.associative:
+        class: Da\StatBundle\Data\Provider\AssociativeDataProvider
+
+    da_stat.data_provider.series:
+        class: Da\StatBundle\Data\Provider\SeriesDataProvider
+
+    da_stat.data_provider.table:
+        class: Da\StatBundle\Data\Provider\TableDataProvider

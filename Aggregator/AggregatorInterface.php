@@ -3,7 +3,6 @@
 namespace Da\StatBundle\Aggregator;
 
 use Da\StatBundle\Data\DataInterface;
-use Da\StatBundle\Exception\SecurityException;
 
 /**
  * AggregatorInterface is the interface that a class should implement 
@@ -13,35 +12,35 @@ use Da\StatBundle\Exception\SecurityException;
  */
 interface AggregatorInterface
 {
-      /**
-       * Format the criteria.
-       *
-       * @param array $criteria The criteria.
-       *
-       * @return array The formatted criteria.
-       *
-       * @throws \InvalidArgumentException If the criteria are not the intended ones.
-       */
-      function formatCriteria(array $criteria = array());
+    /**
+     * Format the criteria.
+     *
+     * @param array $criteria The criteria.
+     *
+     * @return array The formatted criteria.
+     *
+     * @throws \Da\StatBundle\Exception\BadCriteriaException If the criteria are not the intended ones.
+     */
+    function formatCriteria(array $criteria = array());
 
-      /**
-       * Check the validity and rights associated to the criteria.
-       *
-       * @param array $criteria The criteria.
-       *
-       * @return array The checked criteria.
-       *
-       * @throws \InvalidArgumentException If the criteria are not the intended ones.
-       * @throws SecurityException If the criteria correspond to an unauthorized data.
-       */
-     function checkCriteria(array $criteria = array());
+    /**
+     * Check the validity and rights associated to the criteria.
+     *
+     * @param array $criteria The criteria.
+     *
+     * @return array The checked criteria.
+     *
+     * @throws \Da\StatBundle\Exception\BadCriteriaException If the criteria are not the intended ones.
+     * @throws \Da\StatBundle\Exception\SecurityException If the criteria correspond to an unauthorized data.
+     */
+    function checkCriteria(array $criteria = array());
 
-      /**
-       * Retrieve the data.
-       *
-       * @param array $criteria The criteria.
-       *
-       * @return DataInterface The data.
-       */
-      function aggregate(array $criteria = array());
+    /**
+     * Load the data.
+     *
+     * @param array $criteria The criteria.
+     *
+     * @return DataInterface The data.
+     */
+    function aggregate(array $criteria = array());
 }

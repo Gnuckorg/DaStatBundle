@@ -2,7 +2,7 @@
     "name": "da/stat-bundle",
     "type": "symfony-bundle",
     "description": "Symfony2's bundle providing an architecture to make statistics. LOAD your data and RENDER it.",
-    "keywords": ["stat", "bundle", "da", "helper", "architecture"],
+    "keywords": ["stat", "statistics", "bundle", "da", "helper", "architecture"],
     "homepage": "http://github.com/Gnucki/DaStatBundle",
     "license": "MIT",
     "authors": [

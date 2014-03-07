@@ -5,36 +5,35 @@ namespace Da\StatBundle\Renderer;
 use Da\StatBundle\Data\DataInterface;
 
 /**
- * RendererInterface est l'interface qu'un gestionnaire de rendu doit 
- * implémenter pour être utilisée par le service da.stat.handler.
+ * RendererInterface is the interface that a class should implement
+ * to be used as a renderer in the mechanism of the statistics.
  *
- * @author Thomas Prelot
+ * @author Thomas Prelot <thomas.prelot@gmail.com>
  */
 interface RendererInterface
 {
-     /**
-      * Récupère le type de gestionnaire de rendu. Ce dernier est utilisé
-      * pour les labels et le traitement javascript d'affichage.
-      *
-      * @return string Le type de gestionnaire de rendu.
-      */
-     function getType();
+    /**
+     * Get the type of the renderer (used for client javascript side and for the labels).
+     *
+     * @return string The type.
+     */
+    function getType();
 
-	/**
-      * Vérifie si la classe supporte ce type de données.
-      *
-      * @param DataInterface $data La donnée.
-      *
-      * @return array True si la classe supporte ce type de données.
-      */
-	function support(DataInterface $data);
+    /**
+     * Whether or not the renderer supports this kind of data.
+     *
+     * @param DataInterface $data The data.
+     *
+     * @return boolean True if the kind of data is supported, false otherwise.
+     */
+    function supports(DataInterface $data);
 
-	/**
-      * Fabrique la description du rendu d'une donnée.
-      *
-      * @param DataInterface $data La donnée.
-      *
-      * @return array La description du rendu.
-      */
-	function render(DataInterface $data);
+    /**
+     * Build the rendering description.
+     *
+     * @param DataInterface $data The data.
+     *
+     * @return array The rendering description.
+     */
+    function render(DataInterface $data);
 }

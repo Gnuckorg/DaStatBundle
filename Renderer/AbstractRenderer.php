@@ -5,28 +5,26 @@ namespace Da\StatBundle\Renderer;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
- * AbstractRenderer est une classe abstraite qui fournit les services standards
- * dont a besoin un gestionnaire de rendu.
+ * AbstractRenderer is an helper to define a renderer class.
  *
- * @author Thomas Prelot
+ * @author Thomas Prelot <thomas.prelot@gmail.com>
  */
 abstract class AbstractRenderer implements RendererInterface
 {
     /**
-     * Le service de traduction.
+     * The translator.
      *
      * @var Translator
      */
     protected $translator;
 
-	/**
-     * Constructeur.
+    /**
+     * Constructor.
      *
-     * @param TranslatorInterface $translator Le service de traduction.
+     * @param TranslatorInterface $translator The translator.
      */
     public function __construct(TranslatorInterface $translator)
     {
         $this->translator = $translator;
     }
 }
-

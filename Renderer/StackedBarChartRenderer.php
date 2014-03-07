@@ -24,7 +24,7 @@ class StackedBarChartRenderer extends AbstractRenderer
 	/**
      * {@inheritdoc}
      */
-	public function support(DataInterface $data)
+	public function supports(DataInterface $data)
 	{
 		return 
 			(

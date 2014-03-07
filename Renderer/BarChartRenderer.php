@@ -6,12 +6,12 @@ use Da\StatBundle\Data\DataInterface;
 use Da\StatBundle\Data\StackedBarData;
 
 /**
- * ColumnChartRenderer est la classe qui permet de rendre des données 
- * dans un graphique avec des colonnes.
+ * BarChartRenderer est la classe qui permet de rendre des données 
+ * dans un graphique avec des barres.
  *
  * @author Thomas Prelot
  */
-class BarRenderer extends AbstractRenderer
+class BarChartRenderer extends AbstractRenderer
 {
 	/**
      * {@inheritdoc}
@@ -24,7 +24,7 @@ class BarRenderer extends AbstractRenderer
 	/**
      * {@inheritdoc}
      */
-	public function support(DataInterface $data)
+	public function supports(DataInterface $data)
 	{
 		return 
 			(

@@ -24,6 +24,8 @@ class DaStatExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+        $loader->load('renderers.yml');
+        $loader->load('data_providers.yml');
 
         $container->setParameter('da_stat.stat', $config['stat']);
         $container->setParameter('da_stat.assemblies', $config['assemblies']);

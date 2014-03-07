@@ -280,7 +280,7 @@ class StatMediator implements StatMediatorInterface
             $criteria = $aggregator->checkCriteria($criteria);
             $data = $aggregator->aggregate($criteria);
 
-            if (!$renderer->support($data)) {
+            if (!$renderer->supports($data)) {
                 throw new \LogicException(sprintf(
                     'The renderer "%s" does not support data of class "%s" returned by the aggregator for the statistic "%s".',
                     $rendererId,

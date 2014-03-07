@@ -3,7 +3,7 @@
 namespace Da\StatBundle\Data;
 
 /**
- * AbstractData is an helper class to build a data.
+ * AbstractData is an helper class to define a data class.
  *
  * @author Thomas Prelot <thomas.prelot@gmail.com>
  */
@@ -91,7 +91,7 @@ abstract class AbstractData implements DataInterface
      *
      * @throws \InvalidArgumentException If the value is not valid.
      */
-    abstract protected function checkValue();
+    abstract protected function checkValue($value);
 
     /**
      * {@inheritdoc}
@@ -106,7 +106,7 @@ abstract class AbstractData implements DataInterface
      */
     public function setValues(array $values)
     {
-        $isAssociativeArray = (bool)count(array_filter(array_keys($values), 'is_string'));
+        $isAssociativeArray = $this->isAssociativeArray($values);
 
         foreach ($values as $key => $value) {
             if ($isAssociativeArray) {
@@ -116,5 +116,16 @@ abstract class AbstractData implements DataInterface
             }
         }
     }
-}
 
+    /**
+     * Whether or not the array is associative.
+     *
+     * @param array $array The array.
+     *
+     * @return boolean True if the array is associative, false otherwise.
+     */
+    protected isAssociativeArray(array $array) 
+    {
+        return (bool)count(array_filter(array_keys($array), 'is_string'));
+    }
+}

@@ -2,56 +2,10 @@ parameters:
     da_stat.mediator.class: Da\StatBundle\Handler\StatHandler
 
 services:
-    # Handlers
     da_stat.mediator:
         class: %da_stat.mediator.class%
         arguments: [@router, @translator, %da_stat.stat%, %da_stat.assemblies%, %da_stat.menu%]
 
-    # Renderers
-    da_stat.renderer.chart:
-        class: Da\StatBundle\Renderer\ChartRenderer
-        arguments: [@translator]
-        tags:
-            - { name: da_stat.renderer }
-
-    da_stat.renderer.piechart:
-        class: Da\StatBundle\Renderer\PieChartRenderer
-        arguments: [@translator]
-        tags:
-            - { name: da_stat.renderer }
-
-    da_stat.renderer.polarchart:
-        class: Da\StatBundle\Renderer\PolarChartRenderer
-        arguments: [@translator]
-        tags:
-            - { name: da_stat.renderer }
-
-    da_stat.renderer.map:
-        class: Da\StatBundle\Renderer\MapRenderer
-        arguments: [@translator]
-        tags:
-            - { name: da_stat.renderer }
-
-    da_stat.renderer.table:
-        class: Da\StatBundle\Renderer\TableRenderer
-        arguments: [@translator]
-        tags:
-            - { name: da_stat.renderer }
-
-    da_stat.renderer.stackedbarchart:
-        class: Da\StatBundle\Renderer\StackedBarChartRenderer
-        arguments: [@translator]
-        tags:
-            - { name: da_stat.renderer }
-
-    da_stat.renderer.stackedcolumnchart:
-        class: Da\StatBundle\Renderer\StackedColumnChartRenderer
-        arguments: [@translator]
-        tags:
-            - { name: da_stat.renderer }
-
-    da_stat.renderer.barchart:
-        class: Da\StatBundle\Renderer\BarRenderer
-        arguments: [@translator]
-        tags:
-            - { name: da_stat.renderer }
+    da_stat.aggregator:
+        abstract: true
+        arguments: [@translator, @security_context]

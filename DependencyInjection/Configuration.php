@@ -81,7 +81,7 @@ class Configuration implements ConfigurationInterface
     }
 
     /**
-     * assembly:
+     * assemblies:
      *     {stat_name}: [{stat_name1}, {stat_name2}]
      */
     private function addAssembliesSection(ArrayNodeDefinition $rootNode)
