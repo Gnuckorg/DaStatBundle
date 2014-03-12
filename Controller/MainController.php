@@ -21,7 +21,7 @@ class MainController extends Controller
      * Load the description of a rendering of a statistic (ajax).
      *
      * @Route("/buildChart/{statId}", defaults={"_format"="json"})
-     * @Template()
+     * @Template("DaStatBundle:Main:buildChart.json.twig")
      */
     public function buildChartAction($statId)
     {
