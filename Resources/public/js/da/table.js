@@ -97,82 +97,97 @@ $.extend
      */
     convertJsonToTable = function(parsedJson, tableId, tableClassName, linkText, options)
     {   
-        //Patterns for links and NULL value
-        var italic = '<i>{0}</i>';
-        var link = linkText ? '<a href="{0}">' + linkText + '</a>' :
-                '<a href="{0}">{0}</a>';
+        // Patterns for links and NULL value
+        var italic = '<i>{0}</i>',
+            link = linkText ? '<a href="{0}">' + linkText + '</a>' : '<a href="{0}">{0}</a>'
+        ;
 
-        //Pattern for table                          
-        var idMarkup = tableId ? ' id="' + tableId + '"' :
-                '';
+        // Pattern for table                          
+        var idMarkup = tableId ? ' id="' + tableId + '"' : '',
+            classMarkup = tableClassName ? ' class="' + tableClassName + '"' : ''
+        ;
 
-        var classMarkup = tableClassName ? ' class="' + tableClassName + '"' :
-                '';
-
-        if (JSON.stringify(options.values).length > 2){
+        if (JSON.stringify(options.values).length > 2) {
 			this.title = options.title;
-            var tbl = '<h2>'+ this.title + '</h2><table border="1" cellpadding="1" cellspacing="1"' + idMarkup + classMarkup + '>{0}{1}</table><br /><br />';
-            //Patterns for table content
-            var th = '<thead>{0}</thead>';
-            var tb = '<tbody>{0}</tbody>';
-            var tr = '<tr>{0}</tr>';
-            var thRow = '<th>{0}</th>';
-            var tdRow = '<td>{0}</td>';
-            var thCon = '';
-            var tbCon = '';
-            var trCon = '';
-            if (parsedJson)
-                {
-                var isStringArray = typeof(parsedJson[0]) == 'string';
-                var headers;
+
+            var tbl = '<h2>'+ this.title + '</h2><table border="1" cellpadding="5" cellspacing="5"' + idMarkup + classMarkup + '>{0}{1}</table><br /><br />',
+            // Patterns for table content
+                th = '<thead>{0}</thead>',
+                tb = '<tbody>{0}</tbody>',
+                tr = '<tr>{0}</tr>',
+                thRow = '<th>{0}</th>',
+                tdRow = '<td>{0}</td>',
+                thCon = '',
+                tbCon = '',
+                trCon = ''
+            ;
+
+            if (parsedJson) {
+                var isStringArray = false,
+                    headers,
+                    isAssociativeArray = undefined === parsedJson[0]
+                ;
+
+                for (var i in parsedJson) {
+                    if (typeof(parsedJson[i]) !== 'object') {
+                        isStringArray = true;
+                    }
+
+                    break;
+                }
 
                 // Create table headers from JSON data
                 // If JSON data is a simple string array we create a single table header
-                if (isStringArray)
+                if (isStringArray && !isAssociativeArray) {
                     thCon += thRow.format('value');
-                else
-                {
+                } else {
                     // If JSON data is an object array, headers are automatically computed
-                    if (typeof(parsedJson[0]) == 'object')
-                    {
-                        headers = array_keys(parsedJson[0]);
+                    for (var i in parsedJson) {
+                        if (typeof(parsedJson[i]) === 'object') {
+                            headers = array_keys(parsedJson[i]);
 
-                        for (i = 0; i < headers.length; i++)
-                            thCon += thRow.format(headers[i]);
+                            for (j = 0; j < headers.length; j++) {
+                                thCon += thRow.format(headers[j]);
+                            }
+                        }
+
+                        break;
                     }
                 }
+
                 th = th.format(tr.format(thCon));
 
                 // Create table rows from Json data
-                if (isStringArray)
-                {
-                    for (i = 0; i < parsedJson.length; i++)
-                    {
+                if (isStringArray) {
+                    for (var i in parsedJson) {
+                        if (isAssociativeArray) {
+                            tbCon += thRow.format(i);
+                        }
+
                         tbCon += tdRow.format(parsedJson[i]);
                         trCon += tr.format(tbCon);
                         tbCon = '';
                     }
                 }
-                else
-                {
-                    if (headers)
-                    {
+                else {
+                    if (headers) {
                         var urlRegExp = new RegExp(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig);
                         var javascriptRegExp = new RegExp(/(^javascript:[\s\S]*;$)/ig);
 
-                        for (i = 0; i < parsedJson.length; i++)
-                        {
-                            for (j = 0; j < headers.length; j++)
-                            {
+                        for (i = 0; i < parsedJson.length; i++) {
+                            if (isAssociativeArray) {
+                                tbCon += thRow.format(i);
+                            }
+
+                            for (j = 0; j < headers.length; j++) {
                                 var value = parsedJson[i][headers[j]];
                                 var isUrl = urlRegExp.test(value) || javascriptRegExp.test(value);
 
-                                if (isUrl)   // If value is URL we auto-create a link
+                                if (isUrl) {  // If value is URL we auto-create a link
                                     tbCon += tdRow.format(link.format(value));
-                                else
-                                {
+                                } else {
                                     if (value) {
-                                        if (typeof(value) == 'object') {
+                                        if (typeof(value) === 'object') {
                                             //for supporting nested tables
                                             tbCon += tdRow.format(convertJsonToTable(eval(value.data), value.tableId, value.tableClassName, value.linkText));
                                         } else {
@@ -184,19 +199,20 @@ $.extend
                                     }
                                 }
                             }
+
                             trCon += tr.format(tbCon);
                             tbCon = '';
                         }
                     }
                 }
+
                 tb = tb.format(trCon);
                 tbl = tbl.format(th, tb);
 
                 return tbl;
             }
             return null;
-        }
-        else {
+        } else {
             return null;
         }
     }

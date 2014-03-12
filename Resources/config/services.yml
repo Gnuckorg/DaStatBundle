@@ -10,7 +10,7 @@ services:
 
     da_stat.aggregator:
         abstract: true
-        arguments: [@translator, @security.context, @da_stat.data_provider.associative]
+        arguments: [@translator, @security.context]
 
     da_stat.displayer:
         class: %da_stat.displayer.class%

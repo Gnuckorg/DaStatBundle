@@ -3,8 +3,8 @@
 namespace Da\StatBundle\Renderer;
 
 use Da\StatBundle\Data\DataInterface;
-//use Da\StatBundle\Data\TableData;
-use Da\StatBundle\Data\AssociativeDefinedData;
+use Da\StatBundle\Data\AssociativeData;
+use Da\StatBundle\Data\ArrayListData;
 
 /**
  * TableRenderer est la classe qui permet de rendre des données 
@@ -14,35 +14,35 @@ use Da\StatBundle\Data\AssociativeDefinedData;
  */
 class TableRenderer extends AbstractRenderer
 {
-	/**
+    /**
      * {@inheritdoc}
      */
-	public function getType()
-	{
-		return 'da.widget';
-	}
+    public function getType()
+    {
+        return 'da.widget';
+    }
 
-	/**
+    /**
      * {@inheritdoc}
      */
-	public function supports(DataInterface $data)
-	{
-		return 
-			(
-				$data instanceof AssociativeDefinedData
-			);
-	}
+    public function supports(DataInterface $data)
+    {
+        return (
+            $data instanceof AssociativeData ||
+            $data instanceof ArrayListData
+        );
+    }
 
-	/**
+    /**
      * {@inheritdoc}
      */
-	public function render(DataInterface $data)
-	{
-		$renderingDescription = array
-			(
-                'type' => 'Table',
-				'values' => $data->getValues(),
-			);
-		return $renderingDescription;
-	}
+    public function render(DataInterface $data)
+    {
+        $renderingDescription = array(
+            'type' => 'Table',
+            'values' => $data->getValues(),
+        );
+
+        return $renderingDescription;
+    }
 }
