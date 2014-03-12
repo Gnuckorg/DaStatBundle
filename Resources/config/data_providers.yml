@@ -2,6 +2,9 @@ services:
     da_stat.data_provider.list:
         class: Da\StatBundle\Data\Provider\ListDataProvider
 
+    da_stat.data_provider.array_list:
+        class: Da\StatBundle\Data\Provider\ArrayListDataProvider
+
     da_stat.data_provider.associative:
         class: Da\StatBundle\Data\Provider\AssociativeDataProvider
 
