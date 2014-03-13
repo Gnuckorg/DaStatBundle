@@ -3,29 +3,29 @@ services:
         arguments: [@translator]
         abstract: true
 
-    da_stat.renderer.chart:
-        parent: da_stat.renderer
-        class: Da\StatBundle\Renderer\ChartRenderer
-        tags:
-            - { name: da_stat.renderer, id: chart }
+    #da_stat.renderer.chart:
+    #    parent: da_stat.renderer
+    #    class: Da\StatBundle\Renderer\ChartRenderer
+    #    tags:
+    #        - { name: da_stat.renderer, id: chart }
 
-    da_stat.renderer.piechart:
-        parent: da_stat.renderer
-        class: Da\StatBundle\Renderer\PieChartRenderer
-        tags:
-            - { name: da_stat.renderer, id: pie_chart }
+    #da_stat.renderer.piechart:
+    #    parent: da_stat.renderer
+    #    class: Da\StatBundle\Renderer\PieChartRenderer
+    #    tags:
+    #        - { name: da_stat.renderer, id: pie_chart }
 
-    da_stat.renderer.polarchart:
-        parent: da_stat.renderer
-        class: Da\StatBundle\Renderer\PolarChartRenderer
-        tags:
-            - { name: da_stat.renderer, id: polar_chart }
+    #da_stat.renderer.polarchart:
+    #    parent: da_stat.renderer
+    #    class: Da\StatBundle\Renderer\PolarChartRenderer
+    #    tags:
+    #        - { name: da_stat.renderer, id: polar_chart }
 
-    da_stat.renderer.map:
-        parent: da_stat.renderer
-        class: Da\StatBundle\Renderer\MapRenderer
-        tags:
-            - { name: da_stat.renderer, id: map }
+    #da_stat.renderer.map:
+    #    parent: da_stat.renderer
+    #    class: Da\StatBundle\Renderer\MapRenderer
+    #    tags:
+    #        - { name: da_stat.renderer, id: map }
 
     da_stat.renderer.table:
         parent: da_stat.renderer
@@ -33,20 +33,20 @@ services:
         tags:
             - { name: da_stat.renderer, id: table }
 
-    da_stat.renderer.stackedbarchart:
-        parent: da_stat.renderer
-        class: Da\StatBundle\Renderer\StackedBarChartRenderer
-        tags:
-            - { name: da_stat.renderer, id: stacked_bar_chart }
+    #da_stat.renderer.stackedbarchart:
+    #    parent: da_stat.renderer
+    #    class: Da\StatBundle\Renderer\StackedBarChartRenderer
+    #    tags:
+    #        - { name: da_stat.renderer, id: stacked_bar_chart }
 
-    da_stat.renderer.stackedcolumnchart:
-        parent: da_stat.renderer
-        class: Da\StatBundle\Renderer\StackedColumnChartRenderer
-        tags:
-            - { name: da_stat.renderer, id: stacked_column_chart }
+    #da_stat.renderer.stackedcolumnchart:
+    #    parent: da_stat.renderer
+    #    class: Da\StatBundle\Renderer\StackedColumnChartRenderer
+    #    tags:
+    #        - { name: da_stat.renderer, id: stacked_column_chart }
 
-    da_stat.renderer.barchart:
-        parent: da_stat.renderer
-        class: Da\StatBundle\Renderer\BarChartRenderer
-        tags:
-            - { name: da_stat.renderer, id: bar_chart }
+    #da_stat.renderer.barchart:
+    #    parent: da_stat.renderer
+    #    class: Da\StatBundle\Renderer\BarChartRenderer
+    #    tags:
+    #        - { name: da_stat.renderer, id: bar_chart }
