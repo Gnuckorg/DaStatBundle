@@ -29,7 +29,10 @@ class TableRenderer extends AbstractRenderer
     {
         return (
             $data instanceof AssociativeData ||
-            $data instanceof ArrayListData
+            $data instanceof ArrayListData ||
+            $data instanceof ListData ||
+            $data instanceof SeriesData ||
+            $data instanceof TableData
         );
     }
 
