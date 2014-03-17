@@ -53,6 +53,6 @@ class StatExtension extends \Twig_Extension
      */
     public function getGlobals()
     {
-        return array('da' => array('stat' => $this->getDisplayer()));
+        return array('da_stat' => $this->getDisplayer());
     }
 }
