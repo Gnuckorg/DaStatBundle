@@ -5,12 +5,14 @@ namespace Da\StatBundle\Renderer;
 use Da\StatBundle\Data\DataInterface;
 use Da\StatBundle\Data\AssociativeData;
 use Da\StatBundle\Data\ArrayListData;
+use Da\StatBundle\Data\ListData;
+use Da\StatBundle\Data\SeriesData;
+use Da\StatBundle\Data\TableData;
 
 /**
- * TableRenderer est la classe qui permet de rendre des données 
- * dans un tableau.
+ * Table renderer.
  *
- * @author Thomas Prelot
+ * @author Thomas Prelot <thomas.prelot@gmail.com>
  */
 class TableRenderer extends AbstractRenderer
 {
