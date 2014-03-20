@@ -10,3 +10,15 @@
 <script type="text/javascript" src="{{ asset('bundles/dastat/js/init.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bundles/dastat/js/criteriaProvider.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bundles/dastat/js/loadCharts.js') }}"></script>
+
+<script type="text/javascript">
+    locale = "{{ app.request.locale }}";
+
+    $.extend(
+        stat,
+        {
+            basePath: "{{ app.request.getBasePath() }}",
+            baseUrl: "{{ app.request.getBaseURL() }}"
+        }
+    );
+</script>
