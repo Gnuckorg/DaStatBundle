@@ -9,11 +9,11 @@ services:
     #    tags:
     #        - { name: da_stat.renderer, id: chart }
 
-    #da_stat.renderer.piechart:
-    #    parent: da_stat.renderer
-    #    class: Da\StatBundle\Renderer\PieChartRenderer
-    #    tags:
-    #        - { name: da_stat.renderer, id: pie_chart }
+    da_stat.renderer.piechart:
+        parent: da_stat.renderer
+        class: Da\StatBundle\Renderer\PieChartRenderer
+        tags:
+            - { name: da_stat.renderer, id: pie_chart }
 
     #da_stat.renderer.polarchart:
     #    parent: da_stat.renderer
