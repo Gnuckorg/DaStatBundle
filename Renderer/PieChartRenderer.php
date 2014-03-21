@@ -35,20 +35,9 @@ class PieChartRenderer extends AbstractRenderer
      */
     public function render(DataInterface $data)
     {
-        $decimalsNumber = 2;
-        if ($data->hasOption('decimalsNumber')) {
-            $decimalsNumber = $data->getOption('decimalsNumber');
-        }
-
-        $unit = '';
-        if ($data->hasOption('unit')) {
-            $unit = $data->getOption('unit');
-        }
-
-        $subtitle = '';
-        if ($data->hasOption('subtitle')) {
-            $subtitle = $data->getOption('subtitle');
-        }
+        $decimalsNumber = $data->getOption('decimalsNumber', 2);
+        $unit = $data->getOption('unit', '');
+        $subtitle = $data->getOption('subtitle', '');
 
         $renderingDescription = array(
             'credits' => array(
