@@ -12,6 +12,15 @@ namespace Da\StatBundle\Data;
 interface DataInterface
 {
     /**
+     * Whether or not an option exist.
+     *
+     * @param string $key The key.
+     *
+     * @return boolean True if the option exists, false otherwise.
+     */
+    function hasOption($key);
+
+    /**
      * Get an option.
      *
      * @param string $key   The key.

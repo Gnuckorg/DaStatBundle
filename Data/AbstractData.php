@@ -14,7 +14,7 @@ abstract class AbstractData implements DataInterface
      *
      * @var array
      */
-    protected $options;
+    protected $options = array();
 
     /**
      * The values.
@@ -22,6 +22,14 @@ abstract class AbstractData implements DataInterface
      * @var array
      */
     protected $values = array();
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasOption($key)
+    {
+        return array_key_exists($key, $this->options);
+    }
 
     /**
      * {@inheritdoc}
