@@ -48,6 +48,14 @@ class TableRenderer extends AbstractRenderer
             'values' => $data->getValues(),
         );
 
+        if ($data->hasOption('tableId')) {
+            $renderingDescription['tableId'] = $data->getOption('tableId');
+        }
+
+        if ($data->hasOption('tableClass')) {
+            $renderingDescription['tableClass'] = $data->getOption('tableClass');
+        }
+
         return $renderingDescription;
     }
 }

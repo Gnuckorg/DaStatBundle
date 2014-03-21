@@ -56,7 +56,7 @@ $.extend
         if (options.values)
 			this.values = options.values;
 
-        var table = convertJsonToTable(this.values, null, null, this.linkText, options);
+        var table = convertJsonToTable(this.values, options.tableId, options.tableClass, this.linkText, options);
 
         $('#' + options.renderTo).html(table);
 	};
@@ -104,13 +104,13 @@ $.extend
 
         // Pattern for table                          
         var idMarkup = tableId ? ' id="' + tableId + '"' : '',
-            classMarkup = tableClassName ? ' class="' + tableClassName + '"' : ''
+            classMarkup = tableClassName ? ' class="chart-table ' + tableClassName + '"' : 'class="chart-table"'
         ;
 
         if (JSON.stringify(options.values).length > 2) {
 			this.title = options.title;
 
-            var tbl = '<h2>'+ this.title + '</h2><table border="1" cellpadding="5" cellspacing="5"' + idMarkup + classMarkup + '>{0}{1}</table><br /><br />',
+            var tbl = '<div style="margin-left: auto; margin-right: auto; width: 50%"><span class="chart-title">'+ this.title + '</span></div><table cellpadding="5" cellspacing="5"' + idMarkup + classMarkup + '>{0}{1}</table><br /><br />',
             // Patterns for table content
                 th = '<thead>{0}</thead>',
                 tb = '<tbody>{0}</tbody>',
