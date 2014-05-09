@@ -7,7 +7,7 @@ namespace Da\StatBundle\Data\Provider;
  *
  * @author Thomas Prelot <thomas.prelot@gmail.com>
  */
-class ListDataProvider extends AbstractDataProvider
+class TableDataProvider extends AbstractDataProvider
 {
     /**
      * {@inheritdoc}
