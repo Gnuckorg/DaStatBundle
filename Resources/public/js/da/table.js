@@ -18,19 +18,16 @@ $.extend
 );
 
 /**
-     * JavaScript format string function
-     * 
-     */
-    String.prototype.format = function()
-    {
-        var args = arguments;
+ * JavaScript format string function
+ */
+String.prototype.format = function()
+{
+    var args = arguments;
 
-        return this.replace(/{(\d+)}/g, function(match, number)
-        {
-            return typeof args[number] != 'undefined' ? args[number] :
-                    '{' + number + '}';
-        });
-    };
+    return this.replace(/{(\d+)}/g, function(match, number) {
+        return typeof args[number] != 'undefined' ? args[number] : '';
+    });
+};
 
 // Definition of the class table.Table.
 (function()
